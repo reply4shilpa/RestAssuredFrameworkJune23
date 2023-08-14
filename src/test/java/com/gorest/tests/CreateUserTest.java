@@ -1,5 +1,6 @@
 package com.gorest.tests;
 
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.qa.gorest.base.BaseTest;
@@ -15,27 +16,33 @@ import java.util.Map;
 
 public class CreateUserTest extends BaseTest {
 
-	RestClient restClient, restClient1;
+	@BeforeMethod
+	public void getUserSetUp() {
+		
+		restClient=new RestClient(prop, baseURI);
+	}
+	//sonar cube for code smells ..all hardcoded values 
 	
 	@Test
 	public void createUserTest() {
+
+		User user = new User("Shilpa", StringUtil.getRandomEmailId(), "female", "active");
+		// restClient=new RestClient(prop, baseURI);
+
+		Integer userId = restClient.post(GOREST_ENDPOINT, "json", user, true, false).then().log().all()
+				.assertThat().statusCode(201)
+					.extract().path("id");
 		
-		User user=new User("Shilpa",StringUtil.getRandomEmailId(), "female","active");
-		restClient=new RestClient();
+		System.out.println("User Id is:- > " + userId);
+
+		// GET call to fetch the id
 		
-		Integer userId=	restClient.post("/public/v2/users", "json", user, false)
-		.then().log().all()
-			.assertThat().statusCode(201)
-				.extract().path("id");
-		System.out.println("User Id is:- > "+userId);
-	
-	//GET call to fetch the id
-		 restClient1=new RestClient(prop, baseURI);
-		restClient1.get("/public/v2/users/"+userId, true)
-		.then().log().all()
-			.assertThat().statusCode(200)
-				.assertThat() .body("id", equalTo(userId));
-			
+		RestClient	 clientGet=new RestClient(prop, baseURI);
+		 
+		 
+		clientGet.get(GOREST_ENDPOINT+ userId, true, true).then().log().all().assertThat().statusCode(200)
+				.assertThat().body("id", equalTo(userId));
+
 	}
 	
 }

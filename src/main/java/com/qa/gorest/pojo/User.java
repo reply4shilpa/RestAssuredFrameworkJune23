@@ -12,10 +12,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.jackson.Jacksonized;
 
-//@Jacksonized
-//@Data               //for getters and setters
+@Jacksonized
+@Data               //for getters and setters
 //@NoArgsConstructor  //for default constructor
-//@AllArgsConstructor //for all argument constructor
+@AllArgsConstructor //for all argument constructor
 //@JsonIgnoreProperties
 @JsonInclude(Include.NON_NULL)
 public class User {
@@ -44,9 +44,9 @@ public class User {
 		this.status = status;
 	}
 
-	@JsonCreator
-	public User() {
-		
-	}
+//	@JsonCreator
+//	public User() {
+//		
+//	}
 	
 }

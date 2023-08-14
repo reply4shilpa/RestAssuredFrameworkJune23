@@ -1,5 +1,8 @@
 package com.gorest.tests;
 
-public class APISchemaValidation {
+import com.qa.gorest.base.BaseTest;
 
+public class APISchemaValidation extends BaseTest {
+
+	
 }

@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.PathNotFoundException;
-import com.qa.gorest.frameExceptions.APIFrameException;
+import com.qa.gorest.frameExceptions.APIFrameworkException;
 
 import io.restassured.response.Response;
 
@@ -15,37 +15,49 @@ import io.restassured.response.Response;
 			
 			return response.getBody().asString();
 		}
+		
+		
+		public <T> T read(Response response, String jsonPath) {	//T could be anything/ any datatypes, so here list of anything(java generics)
+			
+			String jsonResponse=getJsonResponseAsString(response);
+			try {
+					return	JsonPath.read(jsonResponse, jsonPath);
+		
+			}catch(PathNotFoundException e) {
+				
+					e.printStackTrace();
+					throw new APIFrameworkException (jsonPath+"is not found..");
+		}
+	}
 	
-		public <T> List<T> readList(Response response, String jsonPath) {	//T could be anything/ any datatypes, so here list of anything
+		public <T> List<T> readList(Response response, String jsonPath){
 		
 			String jsonResponse=getJsonResponseAsString(response);
 			try {
-					return	JsonPath.read(jsonResponse,jsonPath);
+					return	JsonPath.read(jsonResponse, jsonPath);
 		
-			}catch(PathNotFoundException e) {e.printStackTrace();
-		
-		
-			throw new APIFrameException (jsonPath+"is not found..");
+			}catch(PathNotFoundException e) {
+				
+					e.printStackTrace();
+					throw new APIFrameworkException (jsonPath+"is not found..");
 		}
 		
 		
 		
 	}
 	
-		public <T> Map<String, T> readListofMaps(Response response, String jsonPath) {	//T could be anything/ any datatypes, so here list of anything
-		
-			String jsonResponse=getJsonResponseAsString(response);
-			try {
-					return	JsonPath.read(jsonResponse,jsonPath);
-		
-			}catch(PathNotFoundException e) {e.printStackTrace();
-		
-		
-			throw new APIFrameException (jsonPath+"is not found..");
+	public  List<Map<String, String>> readListofMaps(Response response, String jsonPath) {
+
+		String jsonResponse = getJsonResponseAsString(response);
+		try {
+			return JsonPath.read(jsonResponse, jsonPath);
+
+		} catch (PathNotFoundException e) {
+			e.printStackTrace();
+
+			throw new APIFrameworkException(jsonPath + "is not found..");
 		}
-		
-		
-		
+
 	}
 
 }
