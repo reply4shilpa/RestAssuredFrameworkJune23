@@ -14,14 +14,14 @@
 	</classes>
    	</test>  -->
    	
-    <!--	<test  name="GO Rest Create User API Test">
+    	<test  name="GO Rest Create User API Test">
    <parameter name="baseURI" value="https://gorest.co.in"/>
    <classes>
 	   <class name="com.gorest.tests.CreateUserTest"/>
 	</classes>
    	</test>
    	
-   	<test name="Amadeus Flight API Test">
+<!--   	<test name="Amadeus Flight API Test">
 		<parameter name="baseURI" value="https://test.api.amadeus.com" />
 		<parameter name="grantType" value="client_credentials" />
 		<parameter name="clientId" value="TAnRnsU5lASXZ8mPGdwRQZMoQzhu6Gwv" />
@@ -31,14 +31,14 @@
 			<class name="com.qa.gorest.tests.AmadeusAPITest" />	
 		</classes>
 	</test>
-	 -->
+	 
                    
      <test  name="Circuit API Test">
    <parameter name="baseURI" value="https://ergast.com"/>
   	 <classes>
 	   <class name="com.gorest.tests.CircuitTest"/>
 	</classes>
-   	</test> 
+   	</test> -->
 
 <!--<test  name="Request RES API Test">-->
 <!--   <parameter name="baseURI" value="https://requestres.in"/>-->

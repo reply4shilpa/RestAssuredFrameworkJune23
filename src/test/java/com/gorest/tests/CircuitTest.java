@@ -22,35 +22,35 @@ public class CircuitTest extends BaseTest {
 		restClient = new RestClient(prop, baseURI);
 	}
 
-	@Test
+	@Test 
 	public void getAllCircuitTest() {
 
-		Response circuitResponse=restClient.get(CIRCUIT_ENDPOINT+"/2020/circuits.json", false, false);
+			Response circuitResponse=restClient.get(CIRCUIT_ENDPOINT+"/2020/circuits.json", false, false);
 			
-		int statusCode=circuitResponse.statusCode();
-		Assert.assertEquals(statusCode, APIHttpStatus.OK_200.getCode());
+			int statusCode=circuitResponse.statusCode();
+			Assert.assertEquals(statusCode, APIHttpStatus.OK_200.getCode());
 		
-		  
 		   JsonPathValidator js=new  JsonPathValidator();
-		  List<Map<String, String>> circuitInfo=js.readListofMaps(circuitResponse, "$.MRData.CircuitTable.Circuits[?(@.Location='sakhir')].[\"circuitId\",\"circuitName\"]"); 
+		   List<Map<String, String>> circuitInfo=js.readListofMaps(circuitResponse, "$.MRData.CircuitTable.Circuits[?(@.Location='sakhir')].[\"circuitId\",\"circuitName\"]"); 
 		   
 		   		System.out.println(circuitInfo);
 		   		for (Map<String, String> info : circuitInfo) {
 
-					String circuitId = (String) info.get("circuitId");
-					String circuitName = (String) info.get("circuitName");
+					String circuitId =  info.get("circuitId");
+					String circuitName =info.get("circuitName");
 
 					System.out.println(" circuit Id:-> " + circuitId + " circuit Name:-> " + circuitName);
 				}
 
 	}
 
-	// "$.MRData.CircuitTable.Circuits[?(@.circuitId='Bahrain')]"
+	// "$.MRData.CircuitTable.Circuits[?(@.circuitId='Bahrain')].[circuitId,locality]"
 	// $.MRData.CircuitTable.Circuits[?(@.Location='sakhir')].[circuitId,circuitName]
+	//.[\"title\",\"price\"]")
 	//$.MRData.CircuitTable.Circuits[?(@.Location=='sakhir')]
 	
 	
-	@Test (enabled=false)
+	@Test
 	public void getLegthOfCircuitTest() {
 
 		Response circuitResponse=restClient.get(CIRCUIT_ENDPOINT+"/2020/circuits.json", false, false);

@@ -22,8 +22,8 @@ public class GetUserTest extends BaseTest{
 	public void getAllUsersTest() {
 		
 		restClient.get(GOREST_ENDPOINT, true,  false)
-		.then().log().all()
-			.assertThat().statusCode(200);
+			.then().log().all()
+				.assertThat().statusCode(200);
 			
 	}
 	
@@ -47,7 +47,8 @@ public class GetUserTest extends BaseTest{
 		  queryParams.put("name", "shilpa"); queryParams.put("status", "active");
 		  
 		  restClient.get(GOREST_ENDPOINT, queryParams, null, true, true)
-		  .then().log().all() .assertThat().statusCode(200);
+		  		.then().log().all() 
+		  			.assertThat().statusCode(200);
 		  
 		  
 		  }

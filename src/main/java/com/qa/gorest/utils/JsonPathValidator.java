@@ -7,6 +7,9 @@ import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.PathNotFoundException;
 import com.qa.gorest.frameExceptions.APIFrameworkException;
 
+//Using JsonPath JsonPath allows you to compile a json path string to use it many times or to compile and apply
+// in onesingle on demand operation. JayWay library we can validate the data with the response 
+
 import io.restassured.response.Response;
 
 	public class JsonPathValidator {
@@ -46,7 +49,7 @@ import io.restassured.response.Response;
 		
 	}
 	
-	public  List<Map<String, String>> readListofMaps(Response response, String jsonPath) {
+	public <T>  List<Map<String, T>> readListofMaps(Response response, String jsonPath) {
 
 		String jsonResponse = getJsonResponseAsString(response);
 		try {
