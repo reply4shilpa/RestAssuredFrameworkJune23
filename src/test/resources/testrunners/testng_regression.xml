@@ -7,12 +7,12 @@
 <!--	  <listener class-name="com.qa.gorest.listner.ExtentReportListner" />-->
 <!--  </listeners>-->
   
-   <!--<test  name="GO Rest API Test">
+   <test  name="GO Rest API Test">
    <parameter name="baseURI" value="https://gorest.co.in"/>
    <classes>
 	   <class name="com.gorest.tests.GetUserTest"/>
 	</classes>
-   	</test>  -->
+   	</test>  
    	
     	<test  name="GO Rest Create User API Test">
    <parameter name="baseURI" value="https://gorest.co.in"/>
