@@ -7,13 +7,20 @@ import org.testng.annotations.Test;
 import com.qa.gorest.base.BaseTest;
 import com.qa.gorest.client.RestClient;
 import com.qa.gorest.constants.APIConstants;
+import com.qa.gorest.constants.APIHttpStatus;
 import com.qa.gorest.pojo.User;
 import com.qa.gorest.utils.ExcelUtil;
 import com.qa.gorest.utils.StringUtil;
 
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+
+import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.equalTo;
 import static org.testng.Assert.assertNotEqualsDeep;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,5 +63,7 @@ public class CreateUserTest extends BaseTest {
 								.body("id", equalTo(userId));
 
 	}
+	
+	
 	
 }

@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.PathNotFoundException;
-import com.qa.gorest.frameExceptions.APIFrameworkException;
+import com.qa.gorest.frameworkExceptions.APIFrameworkException;
 
 //Using JsonPath JsonPath allows you to compile a json path string to use it many times or to compile and apply
 // in onesingle on demand operation. JayWay library we can validate the data with the response 

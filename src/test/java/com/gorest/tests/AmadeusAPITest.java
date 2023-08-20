@@ -23,7 +23,7 @@ public class AmadeusAPITest extends BaseTest{
 	@BeforeMethod
 	public void flightAPISetup(String baseURI, String grantType, String clientId, String clientSecret) {
 		restClient = new RestClient(prop, baseURI);
-		accessToken = restClient.postTokenAccessTest(AMADEUS_TOKEN_ENDPOINT, grantType, clientId, clientSecret);
+		accessToken = restClient.getAccessToken(AMADEUS_TOKEN_ENDPOINT, grantType, clientId, clientSecret);
 	}
 	
 	
@@ -39,7 +39,7 @@ public class AmadeusAPITest extends BaseTest{
 		Map<String, String> headersMap = new HashMap<String, String>();
 		headersMap.put("Authorization", "Bearer "+ accessToken);
 		
-		Response flightDataResponse = restClientFlight.get( AMADEUS_FLIGHTBOKKING_ENDPOINT,  headersMap, queryParams, false, true)
+		Response flightDataResponse = restClientFlight.get( AMADEUS_FLIGHTBOKKING_ENDPOINT, queryParams, headersMap,  false, true)
 							.then().log().all()
 								.assertThat()
 									.statusCode(APIHttpStatus.OK_200.getCode())

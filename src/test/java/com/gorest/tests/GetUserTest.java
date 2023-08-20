@@ -46,7 +46,7 @@ public class GetUserTest extends BaseTest{
 		  Map <String, String> queryParams=new HashMap <String, String> ();
 		  queryParams.put("name", "shilpa"); queryParams.put("status", "active");
 		  
-		  restClient.get(GOREST_ENDPOINT, queryParams, null, true, true)
+		  restClient.get(GOREST_ENDPOINT,  null, queryParams,true, true)
 		  		.then().log().all() 
 		  			.assertThat().statusCode(200);
 		  
