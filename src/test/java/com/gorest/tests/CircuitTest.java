@@ -1,5 +1,7 @@
 package com.gorest.tests;
 
+import static org.testng.Assert.assertNotEqualsDeep;
+
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +31,7 @@ public class CircuitTest extends BaseTest {
 			
 			int statusCode=circuitResponse.statusCode();
 			Assert.assertEquals(statusCode, APIHttpStatus.OK_200.getCode());
+				
 		
 		   JsonPathValidator js=new  JsonPathValidator();
 		   List<Map<String, String>> circuitInfo=js.readListofMaps(circuitResponse, "$.MRData.CircuitTable.Circuits[?(@.Location='sakhir')].[\"circuitId\",\"circuitName\"]"); 

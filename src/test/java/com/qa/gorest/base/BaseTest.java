@@ -16,8 +16,8 @@ import io.restassured.RestAssured;
 public class BaseTest {
 	
 	//service URLS:
-	public static final String GOREST_ENDPOINT="/public/v2/users/" ;
-	public static final String REQRES_ENDPOINT="/api/users/2" ;
+	public static final String GOREST_ENDPOINT="/public/v2/users" ;
+	public static final String REQRES_ENDPOINT="/api/users" ;
 	public static final String CIRCUIT_ENDPOINT="api/f1" ;
 	public static final String AMADEUS_FLIGHTBOKKING_ENDPOINT="/v1/shopping/flight-destinations" ;
 	public static final String AMADEUS_TOKEN_ENDPOINT="/v1/security/oauth2/token" ;
@@ -28,7 +28,7 @@ public class BaseTest {
 	protected RestClient restClient;
 	protected String baseURI;
 	
-	@Parameters({ "baseURI" })
+	@Parameters({"baseURI"})
 	@BeforeTest
 	public void setUp(String baseURI) {
 		

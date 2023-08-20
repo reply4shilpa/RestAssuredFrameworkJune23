@@ -50,8 +50,10 @@ public class CreateUserTest extends BaseTest {
 		RestClient	 clientGet=new RestClient(prop, baseURI);
 		 
 		 
-		clientGet.get(GOREST_ENDPOINT+ userId, true, true).then().log().all().assertThat().statusCode(200)
-				.assertThat().body("id", equalTo(userId));
+		clientGet.get(GOREST_ENDPOINT+ userId, true, true).then().log().all()
+					.assertThat().statusCode(200)
+							.assertThat()
+								.body("id", equalTo(userId));
 
 	}
 	
