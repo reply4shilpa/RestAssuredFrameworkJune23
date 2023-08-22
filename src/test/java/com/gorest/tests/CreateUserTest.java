@@ -12,17 +12,7 @@ import com.qa.gorest.pojo.User;
 import com.qa.gorest.utils.ExcelUtil;
 import com.qa.gorest.utils.StringUtil;
 
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-
-import static io.restassured.RestAssured.given;
-import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.equalTo;
-import static org.testng.Assert.assertNotEqualsDeep;
-
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 
 public class CreateUserTest extends BaseTest {
 
@@ -46,9 +36,10 @@ public class CreateUserTest extends BaseTest {
 		User user = new User( name, StringUtil.getRandomEmailId(), gender, status);
 		// restClient=new RestClient(prop, baseURI);
 
-		Integer userId = restClient.post(GOREST_ENDPOINT, "json", user, true, false).then().log().all()
-				.assertThat().statusCode(201)
-					.extract().path("id");
+		Integer userId = 
+				restClient.post(GOREST_ENDPOINT,  "json", user, true, false).then().log().all()
+						.assertThat().statusCode(APIHttpStatus.CREATED_201.getCode())
+						.extract().path("id");
 		
 		System.out.println("User Id is:- > " + userId);
 
@@ -57,8 +48,8 @@ public class CreateUserTest extends BaseTest {
 		RestClient	 clientGet=new RestClient(prop, baseURI);
 		 
 		 
-		clientGet.get(GOREST_ENDPOINT+ userId, true, true).then().log().all()
-					.assertThat().statusCode(200)
+		clientGet.get(GOREST_ENDPOINT+ "/"+userId, true, true).then().log().all()
+					.assertThat().statusCode(APIHttpStatus.OK_200.getCode())
 							.assertThat()
 								.body("id", equalTo(userId));
 

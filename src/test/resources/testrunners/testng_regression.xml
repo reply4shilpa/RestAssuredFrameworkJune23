@@ -12,7 +12,7 @@
    <classes>
 	   <class name="com.gorest.tests.GetUserTest"/>
 	</classes>
-   	</test>  
+   	</test>
    	
     	<test  name="GO Rest Create User API Test">
    <parameter name="baseURI" value="https://gorest.co.in"/>
