@@ -29,10 +29,10 @@ public class GetUserTest extends BaseTest{
 	//public/v2/users/4165714/?name&staus
 	@Test(enabled = true)
 	public void getUserTest() {
-		restClient.get(GOREST_ENDPOINT +"/"+4609420, true, true)
+		restClient.get(GOREST_ENDPOINT +"/"+4890279, true, true)
 					.then().log().all()
 						.assertThat().statusCode(APIHttpStatus.OK_200.getCode())
-							.and().body("id", equalTo(4609420));
+							.and().body("id", equalTo(4890279));
 						
 	}
 	
